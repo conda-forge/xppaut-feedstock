@@ -1,9 +1,8 @@
-{% set name = "xppaut" %}
 {% set version = "8.0" %}
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: xppaut
+  version: "{{ version }}"
 
 source:
   url: http://www.math.pitt.edu/~bard/bardware/xppaut_latest.tar.gz
@@ -17,14 +16,10 @@ requirements:
   build:
     - make                 # [unix]
     - {{ compiler('c') }}  # [unix]
-    # It should be able to compile with cigwin, but i really don't know
-    # - m2w64-make           # [win]
-    # - m2w64-gcc            # [win]
-    # - m2w64-toolchain      # [win]
-    # - {{ compiler('m2w64_c') }}  # [win]
+    - {{ stdlib('c') }}    # [unix]
   host:
     - xorg-libx11
-    - libgl-devel                    # [linux]
+    - libgl-devel          # [linux]
   run:
     - xorg-libx11
 
